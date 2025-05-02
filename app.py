@@ -41,7 +41,7 @@ def load_data(league, season):
     elif selected_league == '2022/2023':
         season = '2223'    
 
-    url = f"https://www.football-data.co.uk/mmz4281/{season}/{league}.csv" 
+    url = f"https://www.football-data.co.uk/mmz4281/"+season+"/"+league+".csv" 
     data = pd.read_csv(url)
     return data
 
