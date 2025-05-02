@@ -3,3 +3,6 @@ import pandas as pd
 import numpy as np
 import datetime
 from datetime import date
+
+st.title("Página de Jogos")
+st.write("Conteúdo da página de jogos.")
