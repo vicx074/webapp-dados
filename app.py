@@ -2,10 +2,9 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-
 st.title('Football Data App')
 
-# Montagem do Sidebar
+# Sidebar
 st.sidebar.header('Leagues')
 selected_league = st.sidebar.selectbox(
     'League',
@@ -14,40 +13,40 @@ selected_league = st.sidebar.selectbox(
 
 st.sidebar.header('Season')
 selected_season = st.sidebar.selectbox(
-    'Season', ['2025/2024', '2024/2023', '2023/2022']
+    'Season', ['2024/2025', '2023/2024', '2022/2023']
 )
-
-
-# Web Scraping Football Data
 
 # Função para carregar os dados
 def load_data(league, season): 
+    # Mapear nomes para códigos de liga
+    league_codes = {
+        'England': 'E0',
+        'Spain': 'SP1',
+        'Germany': 'D1',
+        'France': 'F1'
+    }
+    
+    # Mapear temporadas para códigos de temporada
+    season_codes = {
+        '2024/2025': '2425',
+        '2023/2024': '2324',
+        '2022/2023': '2223'
+    }
+    
+    league_code = league_codes.get(league)
+    season_code = season_codes.get(season)
 
-# Condicionais para definir a liga com base na seleção do usuário
-    if selected_league == 'England': 
-        league = 'E0'
-    elif selected_league == 'Spain': 
-        league = 'SP1'
-    elif selected_league == 'Germany': 
-        league = 'D1'
-    elif selected_league == 'France': 
-        league = 'F1'
+    if not league_code or not season_code:
+        st.error("Liga ou temporada inválida.")
+        return pd.DataFrame()
 
-# Condicionais para definir a temporada com base na seleção do usuário
-    if selected_league == '2024/2025':
-        season = '2425' 
-    elif selected_league == '2023/2024':
-        season = '2324'
-    elif selected_league == '2022/2023':
-        season = '2223'    
+    url = f"https://www.football-data.co.uk/mmz4281/{season_code}/{league_code}.csv"
+    st.write("URL carregada:", url)  # Para debug
 
-    url = f"https://www.football-data.co.uk/mmz4281/"+season+"/"+league+".csv" 
     data = pd.read_csv(url)
     return data
 
-
-
 df = load_data(selected_league, selected_season)
 
-st.subheader('Dataframe: '+selected_league)
+st.subheader('Dataframe: ' + selected_league)
 st.dataframe(df)
