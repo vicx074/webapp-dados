@@ -41,7 +41,7 @@ def load_data(league, season):
         return pd.DataFrame()
 
     url = f"https://www.football-data.co.uk/mmz4281/{season_code}/{league_code}.csv"
-    st.write("URL carregada:", url)  # Para debug
+    st.write("CSV:", url)  # Para debug
 
     data = pd.read_csv(url)
     return data
