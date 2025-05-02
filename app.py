@@ -44,7 +44,7 @@ def load_data(league, season):
 # Carregamento do dataframe
 df = load_data(selected_league, selected_season)
 
-# Exibição do dataframe
+# Exibição do dataframe app
 st.subheader('Dataframe: ' + selected_league)
 st.dataframe(df)
 
