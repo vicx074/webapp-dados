@@ -36,10 +36,6 @@ def load_data(league, season):
     league_code = league_codes.get(league)
     season_code = season_codes.get(season)
 
-    if not league_code or not season_code:
-        st.error("Liga ou temporada inválida.")
-        return pd.DataFrame()
-
     url = f"https://www.football-data.co.uk/mmz4281/{season_code}/{league_code}.csv"
     st.write("CSV:", url)  # Para debug
 
