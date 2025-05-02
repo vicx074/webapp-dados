@@ -13,7 +13,7 @@ selected_league = st.sidebar.selectbox(
 )
 
 st.sidebar.header('Season')
-selected_seaso = st.sidebar.selectbox(
+selected_season = st.sidebar.selectbox(
     'Season', ['2025/2024', '2024/2023', '2023/2022']
 )
 
